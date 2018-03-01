@@ -30,7 +30,7 @@ class MessagesList extends PureComponent {
     const {classes, messages} = this.props;
     return (
       <div className={classes.messagesWrapper} ref="messagesWrapper">
-        {messages && messages.map((message, index) => <Message message={message} key={index}/>)}
+        {messages && messages.map((message, index) => <Message key={index} {...message}/>)}
       </div>
     )
   }

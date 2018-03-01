@@ -1,10 +1,9 @@
 import React from 'react';
 import {withStyles} from 'material-ui/styles';
 import classNames from 'classnames';
-import Avatar from 'material-ui/Avatar';
+import Avatar from './Avatar';
 import Typography from 'material-ui/Typography';
 import Paper from 'material-ui/Paper';
-import titleInitials from "../utils/titles";
 
 const styles = theme => ({
   messageWrapper: {
@@ -28,15 +27,15 @@ const styles = theme => ({
   },
 });
 
-const Message = ({classes, message}) => {
-  const isMessageFromMe = message.sender === 'me';
-  const userAvatar = <Avatar>{titleInitials(message.sender)}</Avatar>;
+const Message = ({classes, sender, content}) => {
+  const isMessageFromMe = sender === 'me';
+  const userAvatar = <Avatar colorId={sender}>{sender}</Avatar>;
   return (
     <div className={classNames(classes.messageWrapper, isMessageFromMe && classes.messageWrappperFromMe)}>
       {!isMessageFromMe && userAvatar}
       <Paper className={classNames(classes.message, isMessageFromMe && classes.messageFromMe)}>
-        <Typography variant="caption">{message.sender}</Typography>
-        <Typography variant="body1">{message.content}</Typography>
+        <Typography variant="caption">{sender}</Typography>
+        <Typography variant="body1">{content}</Typography>
       </Paper>
       {isMessageFromMe && userAvatar}
     </div>

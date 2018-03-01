@@ -1,30 +1,17 @@
-import React, {PureComponent} from 'react';
-import {withStyles} from 'material-ui/styles';
-import Sidebar from './Sidebar';
-import AppHeader from './AppHeader';
-import Chat from './Chat';
-import {chats, messages} from '../mock';
+import React from 'react';
+import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
+import ChatPage from './ChatPage';
+import WelcomePage from './WelcomePage';
 
-const styles = {
-  root: {
-    height: '100vh',
-    width: '100vw',
-    position: 'relative',
-    display: 'flex',
-  }
-};
 
-class App extends PureComponent {
-  render() {
-    const {classes} = this.props;
-    return (
-      <div className={classes.root}>
-        <AppHeader/>
-        <Sidebar chats={chats}/>
-        <Chat messages={messages}/>
-      </div>
-    );
-  }
-}
+const App = () => (
+  <Router>
+    <Switch>
+      <Route exact path="/(welcome)?" component={WelcomePage}/>
+      <Route path="/chat" component={ChatPage}/>
+      <Redirect to="/" />
+    </Switch>
+  </Router>
+);
 
-export default withStyles(styles)(App);
+export default App;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import {withStyles} from 'material-ui/styles';
 import Input from 'material-ui/Input';
 import Paper from 'material-ui/Paper';
@@ -15,12 +15,17 @@ const styles = theme => ({
   },
 });
 
-const MessageInput = ({classes}) => (
-  <div className={classes.messageInputWrapper}>
-    <Paper className={classes.messageInput} elevation={6}>
-      <Input fullWidth placeholder="Type your message here…"/>
-    </Paper>
-  </div>
-);
+class MessageInput extends PureComponent {
+  render () {
+    const { classes} = this.props;
+    return (
+      <div className={classes.messageInputWrapper}>
+        <Paper className={classes.messageInput} elevation={6}>
+          <Input fullWidth placeholder="Type your message here…"/>
+        </Paper>
+      </div>
+    )
+  }
+}
 
 export default withStyles(styles)(MessageInput);
